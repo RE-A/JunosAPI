@@ -10,10 +10,13 @@
     "type": "git",
     "url": "git+https://github.com/RE-A/JunosAPI.git"
   },
-  "author": "Junho Song",
+  "author": "Jun",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/RE-A/JunosAPI/issues"
   },
-  "homepage": "https://github.com/RE-A/JunosAPI#readme"
+  "homepage": "https://github.com/RE-A/JunosAPI#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }

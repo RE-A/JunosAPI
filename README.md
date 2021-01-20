@@ -6,3 +6,7 @@
 Python + Node.js(express)
 
 * Python은 센서의 값을 읽을 때 사용.
+
+### 센서 정보
+##### DHT11 Temperature and Relative Humidity Sensor Module
+* 기온, 습도 제공
