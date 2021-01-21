@@ -1,0 +1,7 @@
+.button-area {
+    text-align: center;
+}
+
+.button-area button {
+    display: inline-block;
+}

@@ -1,0 +1,12 @@
+html, body {
+    background: light-blue;
+    background-size: cover;
+
+    /* 폰트 설정 */
+
+    font-size: medium;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+
