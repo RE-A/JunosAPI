@@ -2,6 +2,9 @@
 # Created by https://www.toptal.com/developers/gitignore/api/node,python,pycharm,linux,visualstudiocode
 # Edit at https://www.toptal.com/developers/gitignore?templates=node,python,pycharm,linux,visualstudiocode
 
+# 접속데이터 이그노어
+config/
+
 ### Linux ###
 *~
 
