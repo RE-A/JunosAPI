@@ -12,7 +12,7 @@ def Fahrenheit_to_Celsius(f):
 def measure():
     temperature = Fahrenheit_to_Celsius(dht_device.temperature)
     humidity = dht_device.humidity
-    return (temperature, humidity)
+    return {'temperature':temperature, 'humidity':humidity}
 
 
 if __name__ == "__main__":
