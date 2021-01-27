@@ -1,5 +1,6 @@
-const should = require('should');
 const assert = require('assert')
+const should = require('should')
+const moment = require('moment')
 const tempAndHum = require('../../helper/tempAndHum')
 
 
@@ -14,38 +15,44 @@ describe('온습도 측정 관련 DB 입출력 테스트', () => {
     })
 
 
-    it('현재 온습도 출력 테스트', () => {
-        const nowTempAndHum = tempAndHum.getNowTah((data) => {
-            data.temperature.should.be.equal(14)
-            data.humidity.should.be.equal(16)
+    it('현재 온습도 출력 테스트', (done) => {
+        tempAndHum.getNowTah((data) => {
+            try {
+                data.temperature.should.be.equal(10)
+                data.humidity.should.be.equal(12)
+                done()
+            } catch (err) {
+                done(err)
+            }
+        })
+
+    })
+
+    it('온습도 데이터 불러오기 테스트', (done) => {
+        tempAndHum.getTah("2021-01-15", moment().format("YYYY-MM-DD"), (data) => {
+            try {
+                data.length.should.not.be.equal(0)
+                done()
+            } catch (err) {
+                done(err)
+            }
         })
     })
 
+    it("온습도 데이터 불러오기 테스트- 잘못된 입력", (done) => {
+        tempAndHum.getTah("12345-01-32", moment().format("YYYY-MM-DD"), (data) => {
+            try {
+                data.length.should.be.equal(0)
+                done()
+            } catch (err) {
+                done(err)
+            }
+        })
+    })
 
 
     after(() => {
         tempAndHum.deleteTah()
     })
+
 })
-
-// 예제
-// var user = {
-//     name: 'tj'
-//   , pets: ['tobi', 'loki', 'jane', 'bandit']
-// };
-
-// user.should.have.property('name', 'tj');
-// user.should.have.property('pets').with.lengthOf(4);
-
-// // if the object was created with Object.create(null)
-// // then it doesn't inherit `Object` and have the `should` getter
-// // so you can do:
-
-// should(user).have.property('name', 'tj');
-// should(true).ok;
-
-// someAsyncTask(foo, function(err, result){
-//   should.not.exist(err);
-//   should.exist(result);
-//   result.bar.should.equal(foo);
-// });

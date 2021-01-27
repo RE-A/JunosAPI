@@ -1,7 +1,9 @@
 const { Sequelize, Op } = require('sequelize')
+const moment = require('moment')
 const db = require('../models')
 const tah = db["TempAndHum"]
 
+// tah : Temperature And Humidity
 
 // Test용 함수
 const addTah = function (temp, hum) {
@@ -29,15 +31,38 @@ const getNowTah = function (callback) {
     })
 }
 
-const getTah = function (startdate, enddate, callback) {
-    if (startdate === undefined) {
-        startdate = Date.now()
+const getTah = function (_startdate, _enddate, callback) {
+
+    const startdate = moment(_startdate, "YYYY-MM-DD")
+    const enddate = moment(_enddate, "YYYY-MM-DD")
+    if (!(startdate.isValid() && enddate.isValid())) {
+        // Error
+        console.log("유효하지 않은 형식")
+        callback([])
+        return
     }
+    tah.findAll({
+        where: {
+            createdAt: {
+                [Op.between]: [startdate, enddate]
+            }
+        }
+    }).then((data) => {
+        let result = []
+        data.forEach((element) => {
+            result.push(element.dataValues)
+        })
+        callback(result)
+    }).catch((err) => {
+        console.log("에러 발생!", err)
+        callback([])
+    })
 }
 
 
 module.exports = {
     getNowTah: getNowTah,
     addTah: addTah,
-    deleteTah: deleteTah
+    deleteTah: deleteTah,
+    getTah: getTah
 }
