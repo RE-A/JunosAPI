@@ -1,11 +1,30 @@
 const should = require('should');
 const assert = require('assert')
+const tempAndHum = require('../../helper/tempAndHum')
+
 
 // mocha 라이브러리 테스트용
-describe('Javascript Test', () => {
-    it('Hello Test', () => {
-        let a = 10
-        a.should.be.equal(11)
+describe('온습도 측정 관련 DB 입출력 테스트', () => {
+
+    before(() => {
+        // 테스트용 데이터 작성
+        tempAndHum.addTah(10, 12)
+        tempAndHum.addTah(12, 14)
+        tempAndHum.addTah(14, 16)
+    })
+
+
+    it('현재 온습도 출력 테스트', () => {
+        const nowTempAndHum = tempAndHum.getNowTah((data) => {
+            data.temperature.should.be.equal(14)
+            data.humidity.should.be.equal(16)
+        })
+    })
+
+
+
+    after(() => {
+        tempAndHum.deleteTah()
     })
 })
 
