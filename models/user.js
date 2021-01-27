@@ -21,7 +21,8 @@ module.exports = function (sequelize, DataTypes) {
             comment: "유저 인증 여부"
         }
     }, {
-        timestamps: true
+        timestamps: true,
+        freezeTableName: true
     }
     )
 }

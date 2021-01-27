@@ -16,7 +16,8 @@ module.exports = function (sequelize, DataTypes) {
             comment: "측정된 습도"
         }
     }, {
-        timestamps: true
+        timestamps: true,
+        freezeTableName: true
     }
     )
 }
