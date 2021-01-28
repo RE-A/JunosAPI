@@ -14,5 +14,6 @@ sql = f"INSERT INTO tempandhum  (temperature, humidity, createdAt) " \
 
 cur.execute(sql)
 conn.commit()
+conn.close()
 
 
