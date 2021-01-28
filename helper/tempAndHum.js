@@ -5,6 +5,16 @@ const tah = db["TempAndHum"]
 
 // tah : Temperature And Humidity
 
+const getFormatDate = function (date) {
+    const year = date.getFullYear()
+    let month = (1 + date.getMonth())
+    month = month >= 10 ? month : '0' + month
+    let day = date.getDate()
+    day = day >= 10 ? day : '0' + day
+    return `${year}-${month}-${day}`
+}
+
+
 // Test용 함수
 const addTah = function (temp, hum) {
     tah.create({
@@ -37,7 +47,6 @@ const getTah = function (_startdate, _enddate, callback) {
     const enddate = moment(_enddate, "YYYY-MM-DD")
     if (!(startdate.isValid() && enddate.isValid())) {
         // Error
-        console.log("유효하지 않은 형식")
         callback([])
         return
     }
@@ -64,5 +73,6 @@ module.exports = {
     getNowTah: getNowTah,
     addTah: addTah,
     deleteTah: deleteTah,
-    getTah: getTah
+    getTah: getTah,
+    getFormatDate: getFormatDate
 }
