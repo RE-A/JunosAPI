@@ -12,6 +12,9 @@ def Fahrenheit_to_Celsius(f):
 def measure():
     temperature = Fahrenheit_to_Celsius(dht_device.temperature)
     humidity = dht_device.humidity
+    # 오류가 생길시 각각 None을 리턴함
+    if not temperature:
+        temperature =
     return {'temperature':temperature, 'humidity':humidity}
 
 
