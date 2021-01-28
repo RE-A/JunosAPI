@@ -12,7 +12,7 @@ measure_data = sensor_new.measure()
 
 temperature_data = f'\'{measure_data["temperature"]}\'' or 'NULL'
 humidity_data = f'\'{measure_data["humidity"]}\'' or 'NULL'
-created_date = {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
+created_date = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
 sql = f"INSERT INTO TempAndHum  (temperature, humidity, createdAt, updatedAt) " \
       f"VALUES ({temperature_data}, {humidity_data}, '{created_date}', '{created_date}')"
